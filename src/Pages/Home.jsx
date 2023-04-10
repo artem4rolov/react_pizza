@@ -16,20 +16,25 @@ const Home = () => {
         setItems(data);
         setIsLoading(false);
       });
+
+    // скроллим наверх
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      <div className="content__top">
-        <Categories />
-        <Sort />
-      </div>
-      <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-          : items &&
-            items.map((item) => <PizzaBlock key={item.title} {...item} />)}
+      <div className="container">
+        <div className="content__top">
+          <Categories />
+          <Sort />
+        </div>
+        <h2 className="content__title">Все пиццы</h2>
+        <div className="content__items">
+          {isLoading
+            ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+            : items &&
+              items.map((item) => <PizzaBlock key={item.title} {...item} />)}
+        </div>
       </div>
     </>
   );
